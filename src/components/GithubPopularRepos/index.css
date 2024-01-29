@@ -1,0 +1,49 @@
+/* Write your CSS here */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.responsive-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  width: 40vw;
+}
+.title {
+  color: #0f172a;
+  font-family: 'Lobster';
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.list-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.repositories-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.failure-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.failure-para {
+  color: #1e293b;
+  font-family: 'Roboto';
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.failure-image {
+  height: 500px;
+  width: 450px;
+}
