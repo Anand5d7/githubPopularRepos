@@ -1,7 +1,9 @@
 import {Component} from 'react'
+
 import Loader from 'react-loader-spinner'
 
 import LanguageFilterItem from '../LanguageFilterItem'
+
 import RepositoryItem from '../RepositoryItem'
 
 import './index.css'
@@ -21,40 +23,41 @@ const languageFiltersData = [
   {id: 'CSS', language: 'CSS'},
 ]
 
+// Write your code here
+
 class GithubPopularRepos extends Component {
   state = {
-    apiStatus: apiStatusConstants.initial,
     repositoriesData: [],
-    activeFilteredItemId: languageFiltersData[0].id,
+    apiStatus: apiStatusConstants.initial,
+    activeLanguageFilterId: languageFiltersData[0].id,
   }
 
   componentDidMount() {
-    this.getRepository()
+    this.getRepositories()
   }
 
-  getRepository = async () => {
-    const {activeFilteredItemId} = this.state
+  getRepositories = async () => {
+    const {activeLanguageFilterId} = this.state
+
     this.setState({
       apiStatus: apiStatusConstants.inProgress,
     })
 
-    const apiUrl = `https://apis.ccbp.in/popular-repos?language=${activeFilteredItemId}`
+    const apiUrl = `https://apis.ccbp.in/popular-repos?language=${activeLanguageFilterId}`
     const response = await fetch(apiUrl)
-
     if (response.ok) {
       const fetchedData = await response.json()
-
       const updatedData = fetchedData.popular_repos.map(eachRepository => ({
         id: eachRepository.id,
-        name: eachRepository.name,
         imageUrl: eachRepository.avatar_url,
-        issuesCount: eachRepository.issues_count,
-        forksCount: eachRepository.forks_count,
+        name: eachRepository.name,
         starsCount: eachRepository.stars_count,
+        forksCount: eachRepository.forks_count,
+        issuesCount: eachRepository.issues_count,
       }))
       this.setState({
-        repositoriesData: updatedData,
         apiStatus: apiStatusConstants.success,
+        repositoriesData: updatedData,
       })
     } else {
       this.setState({
@@ -63,7 +66,7 @@ class GithubPopularRepos extends Component {
     }
   }
 
-  renderLoaderView = () => (
+  renderLoadingView = () => (
     <div data-testid="loader">
       <Loader type="ThreeDots" color="#0284c7" height={80} width={80} />
     </div>
@@ -76,11 +79,11 @@ class GithubPopularRepos extends Component {
         alt="failure view"
         className="failure-image"
       />
-      <p className="failure-para">Something Went Wrong</p>
+      <h1 className="failure-para">Something Went Wrong</h1>
     </div>
   )
 
-  renderRepositoryListView = () => {
+  renderRepositoriesListView = () => {
     const {repositoriesData} = this.state
 
     return (
@@ -97,9 +100,10 @@ class GithubPopularRepos extends Component {
 
   renderRepositories = () => {
     const {apiStatus} = this.state
+
     switch (apiStatus) {
       case apiStatusConstants.success:
-        return this.renderRepositoryListView()
+        return this.renderRepositoriesListView()
       case apiStatusConstants.failure:
         return this.renderFailureView()
       case apiStatusConstants.inProgress:
@@ -109,21 +113,21 @@ class GithubPopularRepos extends Component {
     }
   }
 
-  setActiveFilteredItemId = newFilterId => {
-    this.setState({activeFilteredItemId: newFilterId}, this.getRepository)
+  setActiveLanguageFilterId = newFilterId => {
+    this.setState({activeLanguageFilterId: newFilterId}, this.getRepositories)
   }
 
-  renderLanguageFilteredList = () => {
-    const {activeFilteredItemId} = this.state
+  renderLanguageFiltersListView = () => {
+    const {activeLanguageFilterId} = this.state
 
     return (
-      <ul className="list-container">
+      <ul className="filters-list">
         {languageFiltersData.map(eachFilter => (
           <LanguageFilterItem
             key={eachFilter.id}
-            languageFilterDetails={eachFilter}
-            isActive={eachFilter.id === activeFilteredItemId}
-            setActiveFilteredItemId={this.setActiveFilteredItemId}
+            isActive={eachFilter.id === activeLanguageFilterId}
+            languageFiltersDetails={eachFilter}
+            setActiveLanguageFilterId={this.setActiveLanguageFilterId}
           />
         ))}
       </ul>
@@ -134,8 +138,8 @@ class GithubPopularRepos extends Component {
     return (
       <div className="app-container">
         <div className="responsive-container">
-          <h1 className="title">Popular</h1>
-          {this.renderLanguageFilteredList()}
+          <h1 className="heading">Popular </h1>
+          {this.renderLanguageFiltersListView()}
           {this.renderRepositories()}
         </div>
       </div>
