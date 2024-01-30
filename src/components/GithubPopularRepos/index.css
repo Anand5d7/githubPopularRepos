@@ -1,21 +1,31 @@
 /* Write your CSS here */
+/* Write your CSS here */
 
 .app-container {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .responsive-container {
   display: flex;
   flex-direction: column;
-  width: 35%;
+  width: 30%;
+  padding-left: 30px;
+  padding-right: 60px;
   min-height: 100vh;
 }
 
+.loader-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .heading {
   color: #0f172a;
   font-family: 'Lobster';
-  font-size: 30px;
+  font-size: 40px;
+  text-align: center;
   font-weight: bold;
 }
 
@@ -24,11 +34,13 @@
   flex-direction: row;
   align-items: center;
   flex-wrap: wrap;
+  list-style-type: none;
 }
 
 .repositories-list {
   display: flex;
   flex-direction: column;
+  list-style-type: none;
 }
 
 .failure-container {
@@ -46,4 +58,22 @@
   font-family: 'Roboto';
   font-size: 30px;
   font-weight: bold;
+}
+
+@media screen and (min-width: 768px) {
+  .responsive-container {
+    width: 50%;
+    background-color: black;
+  }
+  .filters-list {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+  .repositories-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
 }
