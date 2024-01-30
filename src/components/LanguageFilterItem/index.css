@@ -1,3 +1,4 @@
+/* Write your CSS here */
 
 /* Write your CSS here */
 
@@ -9,13 +10,18 @@
   font-weight: bold;
   border: none;
   outline: none;
+  margin-right: 35px;
+  margin-bottom: 15px;
 }
 .active-btn {
   background-color: transparent;
-  border: 1px solid #0284c7;
+  border: 2px solid #0284c7;
   cursor: pointer;
   color: #0284c7;
   font-family: 'Roboto';
   font-size: 15px;
   font-weight: bold;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-radius: 13px;
 }
