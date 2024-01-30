@@ -3,42 +3,41 @@ import './index.css'
 
 const RepositoryItem = props => {
   const {repositoryDetails} = props
-
   const {
     name,
     imageUrl,
-    forksCount,
     starsCount,
+    forksCount,
     issuesCount,
   } = repositoryDetails
 
   return (
-    <li className="list-items">
-      <img src={imageUrl} alt={name} className="avatar" />
-      <h1 className="heading">{name}</h1>
-      <div className="count">
+    <li className="repository-item">
+      <img className="repository-image" alt={name} src={imageUrl} />
+      <h1 className="repository-name">{name}</h1>
+      <div className="container">
         <img
           src="https://assets.ccbp.in/frontend/react-js/stars-count-img.png"
+          className="icon-img"
           alt="stars"
-          className="count-image"
         />
-        <p className="count-para">{starsCount} stars</p>
+        <p className="count">{starsCount} stars</p>
       </div>
-      <div className="count">
+      <div className="container">
         <img
           src="https://assets.ccbp.in/frontend/react-js/forks-count-img.png"
+          className="icon-img"
           alt="forks"
-          className="count-image"
         />
-        <p className="count-para">{forksCount} forks</p>
+        <p className="count">{forksCount} forks</p>
       </div>
-      <div className="count">
+      <div className="container">
         <img
           src="https://assets.ccbp.in/frontend/react-js/issues-count-img.png"
+          className="icon-img"
           alt="open issues"
-          className="count-image"
         />
-        <p className="count-para">{issuesCount} open issues</p>
+        <p className="count">{issuesCount} open issues</p>
       </div>
     </li>
   )
