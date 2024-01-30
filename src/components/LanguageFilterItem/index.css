@@ -1,17 +1,21 @@
+
 /* Write your CSS here */
-.lang-btn {
-  border: none;
-  outline: none;
-  cursor: pointer;
+
+.language-btn {
+  background-color: transparent;
   color: #1e293b;
   font-family: 'Roboto';
-  font-size: 17px;
-  font-weight: 600;
-  background-color: transparent;
+  font-size: 15px;
+  font-weight: bold;
+  border: none;
+  outline: none;
 }
-
 .active-btn {
+  background-color: transparent;
   border: 1px solid #0284c7;
+  cursor: pointer;
   color: #0284c7;
-  padding: 2px;
+  font-family: 'Roboto';
+  font-size: 15px;
+  font-weight: bold;
 }
